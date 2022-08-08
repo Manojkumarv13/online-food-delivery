@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Delivery</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+</head>
+<body>
+<br>
+<h1 class="text-center">Delivery Details
+<a href="/home" class="btn btn-danger text-right">Go Home</a>
+</h1>
+<br><br>
+
+<table id="example" class="table table-striped table-bordered text-center">
+        <thead>
+            <tr>
+              
+                <th><center> Name</center></th>
+                <th><center>PurchaseFoodItem</center></th>
+                <th><center>Address</center></th>
+                <th><center>TotalAmount</center></th>
+                <th><center>person</center></th>
+                <th><center>Delivery date</center></th>
+                
+            </tr>
+        </thead>
+        <tbody th:with="count=0">
+     <tr th:each = "deliverydetails, hh : ${delivery}">           
+                <td th:text="${deliverydetails.customername}"></td>
+                <td th:text="${deliverydetails.purchasefooditem}"></td>
+                <td th:text="${deliverydetails.address}"></td>
+                <td th:text="${deliverydetails.price}"></td>
+                <td th:text="${deliverydetails.deliveryperson}"></td>
+                <td th:text="${#dates.format({deliverydetails.deliverydate}, 'dd-MM-yyyy')}"/></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#example').DataTable();
+	} );
+	</script>
+</body>
+</html>
