@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Online food ordering Home_page</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+      
+      <div class="page-title"><h3>Welcomes you</h3></div>
+      <div class="demo-container">
+        
+                    <center><h1>Hungry?</h1>
+                      
+     
+      <h2>Order food from favourite restaurants near you.</h2></center> 
+        
+        
+         <ul>
+            <li>POPULAR CITIES IN INDIA</li>
+            <li>Ahmedabad-Bangalore-Chennai-Delhi-Gurgaon-Hyderabad-Kolkata-Mumbai-Pune& more.</li>
+            <li>Reports</li>
+         </ul>
+         
+      </div>
+      
+      <th:block th:include="/_footer"></th:block>
+      
+   </body>
+</html>

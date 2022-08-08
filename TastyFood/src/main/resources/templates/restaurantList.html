@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+   <head>
+      <meta charset="UTF-8">
+      <title>Restaurant List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+      
+      <div class="page-title">Restaurant List</div>
+      
+      <div class="restaurant-preview-container" th:each="prodInfo : ${paginationRestaurants.list}">
+         <ul>
+            <li><img class="restaurant-image"
+               th:src="@{|/restaurantImage?resid=${prodInfo.resid}|}" /></li>
+            <li>Restaurant_id: <span th:utext="${prodInfo.resid}"></span></li>
+            <li>Name: <span th:utext="${prodInfo.name}"></span></li>
+            <li>Address: <span th:utext="${prodInfo.address}"></span></li>
+            <li>
+               <a th:href="@{/productList}">order Now</a>
+            </li>
+            <!-- For Manager edit Restaurant -->
+            <th:block sec:authorize="hasAuthority('ROLE_MANAGER')">
+               <li>
+                 <a style="color:red;"
+                    th:href="@{|/admin/restaurant?resid=${prodInfo.resid}|}">Edit Restaurant</a>
+               </li>
+            </th:block>
+         </ul>
+      </div>
+      
+      <br/>
+      <div class="page-navigator" th:if="${paginationRestaurants.totalPages > 1}">
+         <th:block th:each="page : ${paginationRestaurants.navigationPages}">
+        
+            <a th:href="@{|/restaurantList?page=${page}|}" th:if="${page != -1}"
+               class="nav-item" th:utext="${page}"></a>
+              
+            <span class="nav-item" th:if="${page == -1}"> ... </span>
+            
+         </th:block>
+      </div>
+      
+      <th:block th:include="/_footer"></th:block>
+      
+   </body>
+</html>  
